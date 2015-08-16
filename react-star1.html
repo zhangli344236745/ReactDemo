@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react-start</title>
+</head>
+<body>
+
+<div id="angle"></div>
+
+<script type="text/javascript" src="js/react.min.js"></script>
+<script type="text/javascript" src="js/JSXTransformer.js"></script>
+<script type="text/jsx">
+	var HelloCompont = React.createClass({
+		render:function(){
+			var elapsed = Math.round(this.props.elapsed/100);
+			var seconds = elapsed/10 + (elapsed % 10 ? '' : '.0' );
+			var message = 'React has been successfully running for ' + seconds + ' seconds.';
+			return <p>{message}</p>;
+		}
+	});
+	var start = new Date().getTime();
+
+	setInterval(function() {
+	  React.render(
+	    <HelloCompont elapsed={new Date().getTime() - start} />,
+	    document.getElementById("angle")
+	  );
+	}, 50);
+
+</script>
+</body>
+</html>

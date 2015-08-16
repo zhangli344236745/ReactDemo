@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>react-star2</title>
+</head>
+<body>
+<div id="container">
+
+</div>
+
+<script type="text/javascript" src="js/react.min.js"></script>
+<script type="text/javascript" src="js/JSXTransformer.js"></script>
+<script type="text/jsx">
+	var Calculator = React.createClass({
+
+		getInitialState:function(){
+			return {
+			 a : 1,
+			 b : 3,
+			 c : 4
+			};
+		},	
+
+		handleInputChange: function(key, event) {
+		    var partialState = {};
+		    partialState[key] = parseFloat(event.target.value);
+		    this.setState(partialState);
+		},
+
+		render:function(){
+			var a = this.state.a;
+		    var b = this.state.b;
+		    var c = this.state.c
+		    var x1 =( (-b + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a) )|| 0;
+		    var x2 = (-b - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+			
+			return (
+				<div>
+					<strong>
+						<em>ax</em><sup>2</sup>
+					</strong>
+					 <h4>Solve for <em>x</em>:</h4>
+					 <p>
+					 <label>
+			            a: <input type="number" value={a} onChange={this.handleInputChange.bind(null, 'a')} />
+			          </label>
+			          <br />
+			          <label>
+			            b: <input type="number" value={b} onChange={this.handleInputChange.bind(null, 'b')} />
+			          </label>
+			          <br />
+			          <label>
+			            c: <input type="number" value={c} onChange={this.handleInputChange.bind(null, 'c')} />
+			          </label>
+			          <br />
+			          x: <strong>{x1}, {x2}</strong>
+					 </p>
+				</div>
+			);
+
+		}
+	});
+	
+	React.render(
+		<Calculator />,
+		document.getElementById("container")
+	);
+</script>
+</body>
+</html>
